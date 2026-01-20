@@ -15,6 +15,15 @@ const logoutBtn = document.getElementById("logoutBtn");
 // Task buttons
 const doneButtons = document.querySelectorAll(".doneBtn");
 
+console.log({
+  loginDiv,
+  roleSection,
+  dashboardDiv,
+  tasksDiv,
+  assignTaskBtn,
+  continueBtn
+});
+
 
 // --------- PHASE 2: ROLE SELECTION ---------
 continueBtn.addEventListener("click", function () {
@@ -28,10 +37,9 @@ continueBtn.addEventListener("click", function () {
   tasksDiv.style.display = "block";
 
   // RBAC
-  if (role === "Developer") {
-    assignTaskBtn.style.display = "none";
-  } else {
-    assignTaskBtn.style.display = "block";
+  if (assignTaskBtn) {
+    assignTaskBtn.style.display =
+      role === "Developer" ? "none" : "block";
   }
 });
 
