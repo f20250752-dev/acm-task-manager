@@ -34,11 +34,24 @@ continueBtn.addEventListener("click", function () {
 
 // --------- LOGOUT ---------
 logoutBtn.addEventListener("click", function () {
+
+  // Sign out from Firebase
+  window.firebaseLogout();
+
+  console.log("User logged out");
+
+  // Reset UI
   dashboardDiv.style.display = "none";
   tasksDiv.style.display = "none";
   loginDiv.style.display = "block";
 
-  // Reset tasks
+  // Show Google login button again
+  document.querySelector(".google-btn").style.display = "flex";
+
+  // Hide role selection
+  roleSection.style.display = "none";
+
+  // Reset tasks (local UI only)
   doneButtons.forEach((btn) => {
     const taskText = btn.previousElementSibling;
     taskText.classList.remove("completed");
@@ -46,6 +59,7 @@ logoutBtn.addEventListener("click", function () {
     btn.disabled = false;
   });
 });
+
 
 // --------- TASK COMPLETION ---------
 doneButtons.forEach((btn) => {
