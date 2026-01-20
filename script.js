@@ -5,7 +5,7 @@ const tasksDiv = document.getElementById("tasks");
 
 // Role selection
 const roleSelect = document.getElementById("roleSelect");
-const roleSection = document.getElementById("roleSelection");
+const roleSection = document.getElementById("roleSection");
 const continueBtn = document.getElementById("continueBtn");
 
 // Buttons
@@ -15,19 +15,8 @@ const logoutBtn = document.getElementById("logoutBtn");
 // Task buttons
 const doneButtons = document.querySelectorAll(".doneBtn");
 
-console.log({
-  loginDiv,
-  roleSection,
-  dashboardDiv,
-  tasksDiv,
-  assignTaskBtn,
-  continueBtn
-});
-
-
-// --------- PHASE 2: ROLE SELECTION ---------
+// --------- ROLE SELECTION ---------
 continueBtn.addEventListener("click", function () {
-
   const role = roleSelect.value;
   console.log("User role selected:", role);
 
@@ -43,18 +32,14 @@ continueBtn.addEventListener("click", function () {
   }
 });
 
-
 // --------- LOGOUT ---------
 logoutBtn.addEventListener("click", function () {
-
-  console.log("User logged out");
-
   dashboardDiv.style.display = "none";
   tasksDiv.style.display = "none";
   loginDiv.style.display = "block";
 
   // Reset tasks
-  doneButtons.forEach(function (btn) {
+  doneButtons.forEach((btn) => {
     const taskText = btn.previousElementSibling;
     taskText.classList.remove("completed");
     btn.textContent = "Mark as Done";
@@ -62,18 +47,14 @@ logoutBtn.addEventListener("click", function () {
   });
 });
 
-
 // --------- TASK COMPLETION ---------
-doneButtons.forEach(function (btn) {
+doneButtons.forEach((btn) => {
   btn.addEventListener("click", function () {
-
     const taskText = btn.previousElementSibling;
-
     taskText.classList.add("completed");
     btn.textContent = "Completed";
     btn.disabled = true;
 
-    console.log("Task marked as completed");
     alert("Notification: Task marked as completed");
   });
 });
