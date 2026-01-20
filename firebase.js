@@ -35,12 +35,15 @@ window.googleLogin = function () {
       alert(`Welcome ${user.displayName}`);
 
       // OPTIONAL: Show role selection after login
-      document.getElementById("roleSelection").style.display = "block";
+      document.getElementById("roleSection").style.display = "block";
+
     })
     .catch((error) => {
       console.error("Firebase login error:", error);
       alert("Google login failed. Please try again.");
     });
 };
+
+
 
 
