@@ -5,7 +5,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebas
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signOut
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
 // Firebase configuration
@@ -45,3 +46,15 @@ window.googleLogin = function () {
       alert("Google login failed. Please try again.");
     });
 };
+
+// -------- FIREBASE LOGOUT --------
+window.firebaseLogout = function () {
+  signOut(auth)
+    .then(() => {
+      console.log("Firebase user signed out");
+    })
+    .catch((error) => {
+      console.error("Logout error:", error);
+    });
+};
+
