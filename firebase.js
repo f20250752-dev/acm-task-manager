@@ -34,16 +34,15 @@ window.googleLogin = function () {
       console.log("Logged in user:", user.email);
       alert(`Welcome ${user.displayName}`);
 
-      // OPTIONAL: Show role selection after login
-      document.getElementById("roleSection").style.display = "block";
+      // Hide Google login button
+      document.querySelector(".google-btn").style.display = "none";
 
+      // Show role selection
+      document.getElementById("roleSection").style.display = "block";
     })
     .catch((error) => {
       console.error("Firebase login error:", error);
       alert("Google login failed. Please try again.");
     });
 };
-
-
-
 
