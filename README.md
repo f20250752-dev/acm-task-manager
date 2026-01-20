@@ -34,6 +34,17 @@ Tech Stack:
 - JavaScript (Vanilla)
 
 Future Improvements:
-- Integrate real Google Authentication using Firebase
+- Firebase Authentication:
+The project integrates Firebase Authentication with Google Sign-In to enable real user authentication.
+Users log in using their Google account, after which they select a role and access the task dashboard.
+Firebase handles secure authentication without storing passwords on the frontend.
+
 - Backend-based logging
 - Persistent task storage
+
+Deployment:
+The application is deployed using GitHub Pages and can be accessed here:
+https://f20250752-dev.github.io/acm-task-manager/
+
+ This enhancement demonstrates real-world authentication flow in a frontend-only application.
+
