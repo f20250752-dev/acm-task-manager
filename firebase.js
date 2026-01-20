@@ -45,4 +45,3 @@ window.googleLogin = function () {
       alert("Google login failed. Please try again.");
     });
 };
-
