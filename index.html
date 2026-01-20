@@ -1,74 +1,59 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>ACM Task Manager</title>
-
-  <!-- Linking external CSS file for styling -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- LOGIN SECTION
-       This is the first screen shown to the user -->
+  <!-- LOGIN SECTION -->
   <div id="login">
-  <h2>Login</h2>
+    <h2>Login</h2>
 
-  <!-- Simulated Google Login Button -->
-  <button class="google-btn" onclick="googleLogin()">
-  <img src="google-icon.png" alt="Google logo">
-  Sign in with Google
-</button>
+    <button class="google-btn" onclick="googleLogin()">
+      <img src="google-icon.png" alt="Google logo">
+      Sign in with Google
+    </button>
 
+    <!-- Role selection -->
+    <div id="roleSection" style="display: none;">
+      <select id="roleSelect">
+        <option>Admin</option>
+        <option>Lead</option>
+        <option>Developer</option>
+      </select>
 
-  <!-- Role selection (hidden initially) -->
-  <div id="roleSection" style="display: none;">
-    <select id="roleSelect">
-      <option>Admin</option>
-      <option>Lead</option>
-      <option>Developer</option>
-    </select>
-
-    <button id="continueBtn">Continue</button>
+      <button id="continueBtn">Continue</button>
+    </div>
   </div>
-</div>
 
-
-  <!-- DASHBOARD SECTION
-       Hidden initially, shown after login -->
-
+  <!-- DASHBOARD -->
   <div id="dashboard">
     <h2>Dashboard</h2>
     <button id="logoutBtn">Logout</button>
-
     <p>Welcome, User</p>
   </div>
 
-  <!-- TASKS SECTION
-       Displays list of tasks -->
+  <!-- TASKS -->
   <div id="tasks">
-  <h2>Tasks</h2>
+    <h2>Tasks</h2>
 
-  <!-- Button visible only to Lead/Admin -->
-  <button id="assignTaskBtn">Assign Task</button>
+    <button id="assignTaskBtn">Assign Task</button>
 
-  <!-- Example task -->
-  <div class="task">
-    <p>Build login page</p>
-    <<button class="doneBtn">Mark as Done</button>
-
+    <div class="task">
+      <p>Build login page</p>
+      <button class="doneBtn">Mark as Done</button>
+    </div>
   </div>
-</div>
 
-
-    <!-- Firebase configuration and Google Authentication -->
+  <!-- Firebase -->
   <script type="module" src="firebase.js"></script>
 
-  <!-- Main application logic -->
+  <!-- Main JS -->
   <script src="script.js"></script>
 
 </body>
 </html>
-
 
