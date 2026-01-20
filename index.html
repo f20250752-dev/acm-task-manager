@@ -16,11 +16,11 @@
   <h2>Login</h2>
 
   <!-- Simulated Google Login Button -->
-  <button id="googleLoginBtn" class="google-btn">
-  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
-       alt="Google logo">
-  <span>Login with Google</span>
+  <button class="google-btn" onclick="googleLogin()">
+  <img src="google-icon.png" alt="Google logo">
+  Sign in with Google
 </button>
+
 
   <!-- Role selection (hidden initially) -->
   <div id="roleSection" style="display: none;">
@@ -62,7 +62,12 @@
 </div>
 
 
-  <!-- Linking JavaScript file at the end so HTML loads first -->
+    <!-- Firebase configuration and Google Authentication -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Main application logic -->
   <script src="script.js"></script>
+
 </body>
 </html>
+
