@@ -1,4 +1,19 @@
 // --------- SECTION REFERENCES ---------
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCO2J7qVDRShUH0uidtcQhpznSMtJ6zllk",
+  authDomain: "acm-task-manager.firebaseapp.com",
+  projectId: "acm-task-manager",
+  storageBucket: "acm-task-manager.firebasestorage.app",
+  messagingSenderId: "236947389550",
+  appId: "1:236947389550:web:98e731d23edb107a0b7a7f"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Firebase Auth reference
+const auth = firebase.auth();
 
 // Main page sections
 const loginDiv = document.getElementById("login");
@@ -19,17 +34,26 @@ const assignTaskBtn = document.getElementById("assignTaskBtn");
 
 // --------- PHASE 1: SIMULATED GOOGLE LOGIN ---------
 
-googleLoginBtn.addEventListener("click", function () {
+function googleLogin() {
+  const provider = new firebase.auth.GoogleAuthProvider();
 
-  // Log Google login action
-  console.log("Google login successful (simulated)");
+  auth.signInWithPopup(provider)
+    .then((result) => {
+      const user = result.user;
 
-  // Hide Google login button
-  googleLoginBtn.style.display = "none";
+      console.log("Logged in user:", user.email);
 
-  // Show role selection section
-  roleSection.style.display = "block";
-});
+      alert(`Welcome ${user.displayName}`);
+
+      // Show role selection page
+      document.getElementById("login").style.display = "none";
+      document.getElementById("roleSelection").style.display = "block";
+    })
+    .catch((error) => {
+      console.error("Login error:", error);
+    });
+}
+
 
 
 // --------- PHASE 2: ROLE SELECTION & CONTINUE ---------
