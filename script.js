@@ -131,10 +131,26 @@ logoutBtn.addEventListener("click", function () {
     window.firebaseLogout();
   }
 
+  // Hide app
   dashboardDiv.style.display = "none";
   tasksDiv.style.display = "none";
+
+  // Reset login UI properly
   loginDiv.style.display = "block";
+  roleSection.style.display = "none";
+
+  const googleBtn = document.querySelector(".google-btn");
+  if (googleBtn) {
+    googleBtn.style.display = "flex";
+    googleBtn.disabled = false;
+  }
+
+  const badge = document.getElementById("userBadge");
+  if (badge) {
+    badge.textContent = "";
+  }
 });
+
 
 // ===============================
 // RESET (TESTING MODE)
@@ -147,4 +163,5 @@ if (resetBtn) {
     }
   });
 }
+
 
