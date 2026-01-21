@@ -31,12 +31,29 @@ function saveTasks(tasks) {
 // ===============================
 function renderTasks(role) {
   const tasks = getTasks();
+  const total = tasks.length;
+const done = tasks.filter(t => t.status === "done").length;
+const progress = total === 0 ? 0 : Math.round((done / total) * 100);
+
+const bar = document.getElementById("progressBar");
+if (bar) {
+  bar.style.width = `${progress}%`;
+}
+
   tasksContainer.innerHTML = "";
  // Task counters
 const counter = document.getElementById("taskCounters");
 
 const pendingCount = tasks.filter(t => t.status !== "done").length;
 const doneCount = tasks.filter(t => t.status === "done").length;
+if (pendingCounter) {
+  if (role === "Developer" && pendingCount === 0) {
+    pendingCounter.style.display = "none";
+  } else {
+    pendingCounter.style.display = "inline-block";
+    pendingCounter.textContent = `Pending: ${pendingCount}`;
+  }
+}
 
 counter.innerHTML = `
   <span id="pendingCount">Pending: ${pendingCount}</span>
@@ -193,4 +210,3 @@ if (resetBtn) {
     }
   });
 }
-
