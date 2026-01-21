@@ -13,56 +13,61 @@
     <h2>Login</h2>
 
     <button class="google-btn" onclick="googleLogin()">
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="Google logo"
+      />
+      <span>Sign in with Google</span>
+    </button>
 
-  <img
-    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-    alt="Google logo"
-  />
-  <span>Sign in with Google</span>
-</button>
-
-<!-- Loading text (appears during Google sign-in) -->
-  <div
-    id="loading"
-    style="display: none; text-align: center; margin-top: 15px;"
-  >
-    Signing you in…
-  </div>
-
+    <!-- Loading text -->
+    <div id="loading" style="display: none; text-align: center; margin-top: 15px;">
+      Signing you in…
+    </div>
 
     <!-- Role selection -->
     <div id="roleSection" style="display: none;">
       <select id="roleSelect">
-  <option>Lead</option>
-  <option>Developer</option>
-  </select>
-
-
+        <option>Lead</option>
+        <option>Developer</option>
+      </select>
       <button id="continueBtn">Continue</button>
     </div>
   </div>
 
   <!-- DASHBOARD -->
-  <div id="dashboard">
-  <h2>Dashboard</h2>
+  <div id="dashboard" style="display: none;">
+    <h2>Dashboard</h2>
 
-  <p id="userBadge"></p>   <!-- small badge -->
-  <p id="userInfo"></p>    <!-- detailed info -->
-  <button id="resetBtn">Reset Test Data</button>
+    <!-- User info -->
+    <div id="userInfoBox">
+      <img id="userAvatar" alt="User avatar" />
+      <p id="userBadge"></p>
+    </div>
 
-  <button id="logoutBtn">Logout</button>
-</div>
-
+    <button id="resetBtn">Reset Test Data</button>
+    <button id="logoutBtn">Logout</button>
+  </div>
 
   <!-- TASKS -->
-  <div id="tasks">
-  <h2>Tasks</h2>
-  <p id="taskCounters"></p>
-  <button id="assignTaskBtn">Assign Task</button>
-  <div id="tasksContainer"></div>
+  <div id="tasks" style="display: none;">
+    <h2>Tasks</h2>
 
-</div>
+    <!-- Counters -->
+    <div id="taskCounters">
+      <span id="pendingCounter"></span>
+      <span id="doneCounter"></span>
+    </div>
 
+    <button id="assignTaskBtn">Assign Task</button>
+
+    <!-- Progress bar -->
+    <div id="progressWrapper">
+      <div id="progressBar"></div>
+    </div>
+
+    <div id="tasksContainer"></div>
+  </div>
 
   <!-- Firebase -->
   <script type="module" src="firebase.js"></script>
