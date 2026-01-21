@@ -28,24 +28,52 @@ const provider = new GoogleAuthProvider();
 
 // Expose Google Login function globally
 window.googleLogin = function () {
+  const loginBtn = document.querySelector(".google-btn");
+  const loadingText = document.getElementById("loading");
+
+  // Disable button + show loading
+  loginBtn.disabled = true;
+  loginBtn.style.opacity = "0.6";
+  loadingText.style.display = "block";
+
   signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
 
-      console.log("Logged in user:", user.email);
-      alert(`Welcome ${user.displayName}`);
+      // Hide loading
+      loadingText.style.display = "none";
 
-      // Hide Google login button
-      document.querySelector(".google-btn").style.display = "none";
+      // User badge
+      const badge = document.getElementById("userBadge");
+      if (badge) {
+        badge.textContent = `Signed in as ${user.displayName}`;
+      }
+
+      // User info
+      const userInfo = document.getElementById("userInfo");
+      if (userInfo) {
+        userInfo.textContent = `Logged in as: ${user.displayName} (${user.email})`;
+      }
+
+      // Hide login button completely after success
+      loginBtn.style.display = "none";
 
       // Show role selection
       document.getElementById("roleSection").style.display = "block";
     })
     .catch((error) => {
       console.error("Firebase login error:", error);
+
+      // Re-enable button on failure
+      loginBtn.disabled = false;
+      loginBtn.style.opacity = "1";
+      loadingText.style.display = "none";
+
       alert("Google login failed. Please try again.");
     });
 };
+
+
 
 // -------- FIREBASE LOGOUT --------
 window.firebaseLogout = function () {
