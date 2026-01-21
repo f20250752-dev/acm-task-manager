@@ -32,24 +32,54 @@ function saveTasks(tasks) {
 function renderTasks(role) {
   const tasks = getTasks();
   tasksContainer.innerHTML = "";
+ // Task counters
+const counter = document.getElementById("taskCounters");
+
+const pendingCount = tasks.filter(t => t.status !== "done").length;
+const doneCount = tasks.filter(t => t.status === "done").length;
+
+counter.innerHTML = `
+  <span id="pendingCount">Pending: ${pendingCount}</span>
+  |
+  <span id="doneCount">Done: ${doneCount}</span>
+`;
 
   if (tasks.length === 0) {
-    tasksContainer.innerHTML = "<p>No tasks assigned.</p>";
-    return;
-  }
+  tasksContainer.innerHTML = "<p>No tasks assigned.</p>";
+  counter.textContent = "No tasks yet";
+  return;
+}
+
 
   tasks.forEach((task) => {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task";
 
-    const title = document.createElement("p");
-    title.textContent = task.title;
+   const title = document.createElement("p");
+title.textContent = task.title;
 
-    if (task.status === "done") {
-      title.classList.add("completed");
-    }
+// Create status badge
+const badge = document.createElement("span");
+badge.classList.add("status-badge");
 
-    taskDiv.appendChild(title);
+if (task.status === "done") {
+  title.classList.add("completed");
+  badge.textContent = "Done";
+  badge.classList.add("done");
+} else {
+  badge.textContent = "Pending";
+  badge.classList.add("pending");
+}
+
+// Put title + badge together
+const titleWrapper = document.createElement("div");
+titleWrapper.style.display = "flex";
+titleWrapper.style.alignItems = "center";
+
+titleWrapper.appendChild(title);
+titleWrapper.appendChild(badge);
+
+taskDiv.appendChild(titleWrapper);
 
     // Developer: mark as done
     if (role === "Developer" && task.status !== "done") {
@@ -163,5 +193,4 @@ if (resetBtn) {
     }
   });
 }
-
 
