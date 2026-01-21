@@ -13,9 +13,22 @@
     <h2>Login</h2>
 
     <button class="google-btn" onclick="googleLogin()">
-      <img src="google-icon.png" alt="Google logo">
-      Sign in with Google
-    </button>
+
+  <img
+    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+    alt="Google logo"
+  />
+  <span>Sign in with Google</span>
+</button>
+
+<!-- Loading text (appears during Google sign-in) -->
+  <div
+    id="loading"
+    style="display: none; text-align: center; margin-top: 15px;"
+  >
+    Signing you in…
+  </div>
+
 
     <!-- Role selection -->
     <div id="roleSection" style="display: none;">
@@ -31,22 +44,24 @@
 
   <!-- DASHBOARD -->
   <div id="dashboard">
-    <h2>Dashboard</h2>
-    <button id="logoutBtn">Logout</button>
-    <p>Welcome, User</p>
-  </div>
+  <h2>Dashboard</h2>
+
+  <p id="userBadge"></p>   <!-- small badge -->
+  <p id="userInfo"></p>    <!-- detailed info -->
+  <button id="resetBtn">Reset Test Data</button>
+
+  <button id="logoutBtn">Logout</button>
+</div>
+
 
   <!-- TASKS -->
   <div id="tasks">
-    <h2>Tasks</h2>
+  <h2>Tasks</h2>
+  <button id="assignTaskBtn">Assign Task</button>
 
-    <button id="assignTaskBtn">Assign Task</button>
+  <div id="tasksList"></div>
+</div>
 
-    <div class="task">
-      <p>Build login page</p>
-      <button class="doneBtn">Mark as Done</button>
-    </div>
-  </div>
 
   <!-- Firebase -->
   <script type="module" src="firebase.js"></script>
