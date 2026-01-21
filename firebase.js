@@ -26,10 +26,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// Expose Google Login function globally
+// -------- GOOGLE LOGIN --------
 window.googleLogin = function () {
   const loginBtn = document.querySelector(".google-btn");
   const loadingText = document.getElementById("loading");
+
+  // Safety checks
+  if (!loginBtn || !loadingText) return;
 
   // Disable button + show loading
   loginBtn.disabled = true;
@@ -40,23 +43,23 @@ window.googleLogin = function () {
     .then((result) => {
       const user = result.user;
 
-      // Hide loading
-      loadingText.style.display = "none";
+      console.log("Logged in:", user.email);
 
-      // User badge
+      // ---- Avatar + badge ----
+      const avatar = document.getElementById("userAvatar");
       const badge = document.getElementById("userBadge");
+
+      if (avatar && user.photoURL) {
+        avatar.src = user.photoURL;
+      }
+
       if (badge) {
         badge.textContent = `Signed in as ${user.displayName}`;
       }
 
-      // User info
-      const userInfo = document.getElementById("userInfo");
-      if (userInfo) {
-        userInfo.textContent = `Logged in as: ${user.displayName} (${user.email})`;
-      }
-
-      // Hide login button completely after success
+      // Hide login UI
       loginBtn.style.display = "none";
+      loadingText.style.display = "none";
 
       // Show role selection
       document.getElementById("roleSection").style.display = "block";
@@ -73,8 +76,6 @@ window.googleLogin = function () {
     });
 };
 
-
-
 // -------- FIREBASE LOGOUT --------
 window.firebaseLogout = function () {
   signOut(auth)
@@ -85,4 +86,3 @@ window.firebaseLogout = function () {
       console.error("Logout error:", error);
     });
 };
-
