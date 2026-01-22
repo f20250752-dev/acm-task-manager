@@ -1,6 +1,4 @@
-//// ===============================
-// DOM REFERENCES
-// ===============================
+// ----DOM REFERENCES----
 const loginDiv = document.getElementById("login");
 const dashboardDiv = document.getElementById("dashboard");
 const tasksDiv = document.getElementById("tasks");
@@ -17,9 +15,7 @@ const tasksContainer = document.getElementById("tasksContainer");
 const taskCounters = document.getElementById("taskCounters");
 
 
-// ===============================
 // TASK STORAGE HELPERS
-// ===============================
 function getTasks() {
   return JSON.parse(localStorage.getItem("tasks")) || [];
 }
@@ -29,19 +25,17 @@ function saveTasks(tasks) {
 }
 
 
-// ===============================
 // RENDER TASKS
-// ===============================
 function renderTasks(role) {
   const tasks = getTasks();
   tasksContainer.innerHTML = "";
 
-  // ---- Counters ----
+  //   -- Counters --
   const total = tasks.length;
   const doneCount = tasks.filter(t => t.status === "done").length;
   const pendingCount = total - doneCount;
 
-  // Hide pending counter for Developer if 0
+  // hide pending counter for developer if 0
   if (taskCounters) {
     if (role === "Developer" && pendingCount === 0) {
       taskCounters.innerHTML = `<span>Done: ${doneCount}</span>`;
@@ -54,21 +48,21 @@ function renderTasks(role) {
     }
   }
 
-  // ---- Progress Bar ----
+  // ---- progress bar ----
   const progress = total === 0 ? 0 : Math.round((doneCount / total) * 100);
   const bar = document.getElementById("progressBar");
   if (bar) {
     bar.style.width = `${progress}%`;
   }
 
-  // ---- No tasks ----
+  // ---- no tasks ----
   if (tasks.length === 0) {
     tasksContainer.innerHTML = "<p>No tasks assigned.</p>";
     if (taskCounters) taskCounters.textContent = "No tasks yet";
     return;
   }
 
-  // ---- Render each task ----
+  // ---- render each task ----
   tasks.forEach(task => {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task";
@@ -97,7 +91,7 @@ function renderTasks(role) {
     titleWrapper.appendChild(badge);
     taskDiv.appendChild(titleWrapper);
 
-    // Developer action
+    // developer action
     if (role === "Developer" && task.status !== "done") {
       const doneBtn = document.createElement("button");
       doneBtn.textContent = "Mark as Done";
@@ -109,7 +103,7 @@ function renderTasks(role) {
       taskDiv.appendChild(doneBtn);
     }
 
-    // Lead action
+    // lead action
     if (role === "Lead") {
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Delete";
@@ -125,9 +119,7 @@ function renderTasks(role) {
 }
 
 
-// ===============================
 // ROLE SELECTION
-// ===============================
 continueBtn.addEventListener("click", () => {
   const role = roleSelect.value;
 
@@ -144,9 +136,7 @@ continueBtn.addEventListener("click", () => {
 });
 
 
-// ===============================
 // ASSIGN TASK (LEAD)
-// ===============================
 if (assignTaskBtn) {
   assignTaskBtn.addEventListener("click", () => {
     const taskTitle = prompt("Enter task name:");
@@ -165,9 +155,7 @@ if (assignTaskBtn) {
 }
 
 
-// ===============================
 // LOGOUT
-// ===============================
 logoutBtn.addEventListener("click", () => {
   if (window.firebaseLogout) window.firebaseLogout();
 
@@ -187,9 +175,7 @@ logoutBtn.addEventListener("click", () => {
 });
 
 
-// ===============================
 // RESET (TEST MODE)
-// ===============================
 if (resetBtn) {
   resetBtn.addEventListener("click", () => {
     if (confirm("Reset all tasks?")) {
