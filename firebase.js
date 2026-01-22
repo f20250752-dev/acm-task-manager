@@ -1,7 +1,7 @@
-// Import Firebase core
+// import firebase core
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 
-// Import Firebase Authentication
+// import firebase authentication
 import {
   getAuth,
   GoogleAuthProvider,
@@ -9,7 +9,7 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-// Firebase configuration
+// firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCO2J7qVDRShUH0uidtcQhpznSMtJ6zllk",
   authDomain: "acm-task-manager.firebaseapp.com",
@@ -19,22 +19,22 @@ const firebaseConfig = {
   appId: "1:236947389550:web:98e731d23edb107a0b7a7f"
 };
 
-// Initialize Firebase
+// initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Authentication
+// initialize Authentication
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-// -------- GOOGLE LOGIN --------
+//     -- GOOGLE LOGIN --
 window.googleLogin = function () {
   const loginBtn = document.querySelector(".google-btn");
   const loadingText = document.getElementById("loading");
 
-  // Safety checks
+  // safety checks
   if (!loginBtn || !loadingText) return;
 
-  // Disable button + show loading
+  // disable button + show loading
   loginBtn.disabled = true;
   loginBtn.style.opacity = "0.6";
   loadingText.style.display = "block";
@@ -45,7 +45,7 @@ window.googleLogin = function () {
 
       console.log("Logged in:", user.email);
 
-      // ---- Avatar + badge ----
+      //   -- avatar + badge --
       const avatar = document.getElementById("userAvatar");
       const badge = document.getElementById("userBadge");
 
@@ -57,17 +57,17 @@ window.googleLogin = function () {
         badge.textContent = `Signed in as ${user.displayName}`;
       }
 
-      // Hide login UI
+      // hide login UI
       loginBtn.style.display = "none";
       loadingText.style.display = "none";
 
-      // Show role selection
+      // show role selection
       document.getElementById("roleSection").style.display = "block";
     })
     .catch((error) => {
       console.error("Firebase login error:", error);
 
-      // Re-enable button on failure
+      // re-enable button on failure
       loginBtn.disabled = false;
       loginBtn.style.opacity = "1";
       loadingText.style.display = "none";
@@ -76,7 +76,7 @@ window.googleLogin = function () {
     });
 };
 
-// -------- FIREBASE LOGOUT --------
+//     -- FIREBASE LOGOUT --
 window.firebaseLogout = function () {
   signOut(auth)
     .then(() => {
@@ -86,3 +86,4 @@ window.firebaseLogout = function () {
       console.error("Logout error:", error);
     });
 };
+
