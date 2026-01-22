@@ -1,4 +1,4 @@
-/* Base styling for the entire page */
+/* base styling for the entire page */
 body {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   background: linear-gradient(135deg, #eef2f7, #f8f9fb);
@@ -7,15 +7,13 @@ body {
   min-height: 100vh;
 }
 
-
-
-/* Underline and center all main headings */
+/* underline and center all main headings */
 h1, h2, h3 {
   text-decoration: underline;
   text-align: center;
 }
 
-/* Login card styling */
+/* login card styling */
 #login {
   width: 360px;
   margin: 120px auto;
@@ -29,10 +27,7 @@ h1, h2, h3 {
   animation: fadeInUp 0.5s ease;
 }
 
-
-
-
-/* Hide dashboard and tasks initially
+/* hide dashboard and tasks initially
    (they appear only after login via JS) */
 #dashboard,
 #tasks {
@@ -47,8 +42,7 @@ h1, h2, h3 {
   animation: fadeInUp 0.4s ease;
 }
 
-
-/* Input fields and dropdown styling */
+/* input fields and dropdown styling */
 input, select {
   width: 100%;
   padding: 10px;
@@ -58,7 +52,7 @@ input, select {
   border-radius: 4px;
 }
 
-/* Button styling */
+/* button styling */
 button {
   padding: 10px 16px;
   font-size: 14px;
@@ -88,8 +82,7 @@ button:hover {
   background-color: #1d4ed8;
 }
 
-
-/* Google Sign-In Button (Official style) */
+/* google Sign-In button (official style) */
 .google-btn {
   display: flex;
   align-items: center;
@@ -112,28 +105,28 @@ button:hover {
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Google icon */
+/* google icon */
 .google-btn img {
   width: 18px;
   height: 18px;
 }
 
-/* Hover effect */
+/* hover effect */
 .google-btn:hover {
   background-color: #f7f8f8;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Active click effect */
+/* active click effect */
 .google-btn:active {
   background-color: #eeeeee;
 }
 
-/* Individual task container */
+/* individual task container */
 .task {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
 
   padding: 14px 16px;
   margin-top: 12px;
@@ -143,40 +136,23 @@ button:hover {
   border-radius: 10px;
 
   transition: background-color 0.2s ease;
+
+  justify-content: space-between;
 }
 
 .task:hover {
   background-color: #f4f6f8;
 }
 
-
+/* ✅ FIX: allow title + badge wrapper to grow properly */
+.task > div {
+  flex: 1;
+  min-width: 0;
+}
 
 .completed {
   text-decoration: line-through;
   color: gray;
-}
- #dashboard {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-
-  display: none;
-}
-
-#tasks {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-
-  display: none;
 }
 
 #logoutBtn {
@@ -195,95 +171,6 @@ button:hover {
   background-color: #fdecea;
 }
 
-h2 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  color: #1f2d3d;
-  text-decoration: none;
-}
-
-p {
-  color: #555;
-  line-height: 1.5;
-}
-
-p {
-  color: #555;
-}
- 
-#login {
-  animation: fadeIn 0.4s ease-in;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#loading {
-  font-size: 14px;
-  color: #555;
-}
-
-#userBadge {
-  font-size: 13px;
-  color: #2c3e50;
-  background-color: #ecf0f1;
-  padding: 6px 10px;
-  border-radius: 4px;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-/* Fade-in animation */
-.fade-in {
-  animation: fadeInDashboard 0.4s ease-in;
-}
-
-@keyframes fadeInDashboard {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Task status badge */
-.status-badge {
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-
-/* Pending badge */
-.status-badge.pending {
-  background-color: #f9e79f;
-  color: #7d6608;
-  border: 1px solid #f4d03f;
-}
-
-/* Done badge */
-.status-badge.done {
-  background-color: #d5f5e3;
-  color: #145a32;
-  border: 1px solid #2ecc71;
-}
-
-.task {
-  justify-content: space-between;
-}
-
 #taskCounters {
   text-align: center;
   margin-bottom: 15px;
@@ -291,49 +178,28 @@ p {
   color: #555;
 }
 
-#taskCounters span {
-  padding: 4px 8px;
-  border-radius: 10px;
-  margin: 0 5px;
-  font-size: 13px;
+/*   == task status badges ==   */
+.status-badge {
+  margin-left: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+  flex-shrink: 0;
 }
 
-#pendingCount {
-  background-color: #f9e79f;
-  color: #7d6608;
+.status-badge.pending {
+  background-color: #facc15; /* yellow */
+  color: #000;
 }
 
-#doneCount {
-  background-color: #d5f5e3;
-  color: #145a32;
+.status-badge.done {
+  background-color: #22c55e; /* green */
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#userInfo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-#userAvatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #2563eb;
-}
-
+/* progress bar */
 #progressWrapper {
   width: 100%;
   height: 12px;
@@ -349,12 +215,3 @@ p {
   background-color: #22c55e;
   transition: width 0.4s ease;
 }
-
-
-
-
-
-
-
-
-
